@@ -37,4 +37,4 @@ y: Shucked weight (quantitative)
 color: Sex (nominal)
 
 ### Combined Visualizations
-I've  combined both visualizations into a single Vega Lite code that creates a vertically stacked layout. This code can be found in the *visualizations1.vl.json* file.
+I've  combined both visualizations into a single Vega Lite code that creates a vertically stacked layout. This code can be found in the **visualizations1.vl.json** file.
