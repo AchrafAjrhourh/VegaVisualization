@@ -1,5 +1,3 @@
-# VegaVisualization
-
 # Description: 
 A repository containing a dataset of abalone physical measurements, sex, and age, along with data visualizations using Vega-Lite to explore patterns and trends.
 
