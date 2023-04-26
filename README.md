@@ -17,11 +17,11 @@ The first visualization is a bar chart that shows the distribution of shell leng
 
 To create this visualization, we used the following encodings in the Vega Lite code:
 
-** *x* **: Length (ordinal, binned)
+* **x** *: Length (ordinal, binned)
 
-** *y* **: Count of abalones (quantitative, aggregated using count)
+* **y** *: Count of abalones (quantitative, aggregated using count)
 
-** *color* **: Sex (nominal)
+* **color** *: Sex (nominal)
 
 ## Visualization 1 Part 2: Relationship between Whole Weight and Shucked Weight by Sex
 The second visualization is a scatter plot that displays the relationship between the whole weight and shucked weight of abalones for each sex. The X-axis represents the whole weight (in grams), the Y-axis represents the shucked weight (in grams), and the color represents the sex (M: Male, F: Female, I: Infant).
@@ -30,11 +30,11 @@ The second visualization is a scatter plot that displays the relationship betwee
 
 To create this visualization, we used the following encodings in the Vega Lite code:
 
-** *x* **: Whole weight (quantitative)
+* **x** *: Whole weight (quantitative)
 
-** *y* **: Shucked weight (quantitative)
+* **y** *: Shucked weight (quantitative)
 
-** *color* **: Sex (nominal)
+* **color** *: Sex (nominal)
 
 ### Combined Visualizations
-I've  combined both visualizations into a single Vega Lite code that creates a vertically stacked layout. This code can be found in the ** *visualizations1.vl.json* ** file.
+I've  combined both visualizations into a single Vega Lite code that creates a vertically stacked layout. This code can be found in the * **visualizations1.vl.json** * file.
