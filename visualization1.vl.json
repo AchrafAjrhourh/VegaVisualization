@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/AchrafAjrhourh/VegaVisualization/master/abalone.csv"
+  },
+  "params": [
+    {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
+  ],
+  "vconcat": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "opacity": {
+          "value": 0.2,
+          "condition": {"param": "highlight", "value": 1}
+        },
+        "x": {
+          "field": "Length",
+          "type": "ordinal",
+          "bin": true,
+          "axis": {"title": "Shell Length (mm)"}
+        },
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "axis": {"title": "Count"}
+        },
+        "color": {"field": "Sex", "type": "nominal", "legend": {"title": "Sex"}}
+      }
+    },
+    {
+      "mark": "point",
+      "encoding": {
+        "x": {
+          "field": "Whole weight",
+          "type": "quantitative",
+          "axis": {"title": "Whole Weight (grams)"}
+        },
+        "y": {
+          "field": "Shucked weight",
+          "type": "quantitative",
+          "axis": {"title": "Shucked Weight (grams)"}
+        },
+        "color": {"field": "Sex", "type": "nominal", "legend": {"title": "Sex"}}
+      }
+    }
+  ],
+  "config": {}
+}
