@@ -1,0 +1,85 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "vconcat": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/AchrafAjrhourh/VegaVisualization/master/stack_network_degrees.csv"
+      },
+      "params": [
+        {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
+      ],
+      "mark": "bar",
+      "encoding": {
+        "opacity": {
+          "value": 0.2,
+          "condition": {"param": "highlight", "value": 1}
+        },
+        "x": {
+          "field": "Degree",
+          "type": "quantitative",
+          "bin": true,
+          "axis": {"title": "Node Degree"}
+        },
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "axis": {"title": "Count"}
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/AchrafAjrhourh/VegaVisualization/master/stack_network_nodes.csv"
+      },
+      "transform": [
+        {
+          "lookup": "name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/AchrafAjrhourh/VegaVisualization/master/stack_network_links.csv"
+            },
+            "key": "source",
+            "fields": ["target", "value"]
+          },
+          "as": ["target", "value"]
+        },
+        {
+          "window": [{"op": "sum", "field": "value", "as": "total_value"}],
+          "groupby": ["name"]
+        },
+        {
+          "window": [{"op": "rank", "as": "rank"}],
+          "sort": [{"field": "total_value", "order": "descending"}],
+          "groupby": ["group"]
+        },
+        {
+          "joinaggregate": [{"op": "max", "field": "rank", "as": "max_rank"}],
+          "groupby": []
+        },
+        {
+          "calculate": "datum.rank == 1 ? 'highlight' : 'background'",
+          "as": "highlight"
+        }
+      ],
+      "mark": {"type": "circle", "tooltip": {"content": "data"}},
+      "encoding": {
+        "x": {"field": "group", "type": "nominal", "axis": {"labelAngle": 0}},
+        "y": {"field": "name", "type": "nominal", "axis": {"labelLimit": 400}},
+        "size": {
+          "field": "total_value",
+          "type": "quantitative",
+          "scale": {"range": [50, 500]}
+        },
+        "color": {
+          "field": "highlight",
+          "type": "nominal",
+          "scale": {"range": ["#FFC107", "#E0E0E0"]}
+        }
+      },
+      "config": {"view": {"stroke": "transparent"}},
+      "width": 600,
+      "height": 600
+    }
+  ],
+  "config": {}
+}
